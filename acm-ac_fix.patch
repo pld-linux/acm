@@ -1,0 +1,22 @@
+--- configure.in.orig	Thu May  1 18:57:06 2003
++++ configure.in	Thu May  1 18:59:20 2003
+@@ -157,15 +157,15 @@
+ AC_REPLACE_FUNCS(strdup)
+ 
+ AC_CHECK_FUNC(rand, AC_DEFINE(HAVE_RAND),
+-  AC_CHECK_FUNC(random, AC_DEFINE(HAVE_RANDOM),
++  [AC_CHECK_FUNC(random, AC_DEFINE(HAVE_RANDOM),
+     [AC_MSG_ERROR(Hmm. Your system does not support either random() or rand().)
+-      exit 1]))
++      exit 1])])
+ 
+ AC_CHECK_FUNC(isnan, AC_DEFINE(HAVE_ISNAN),
+-  AC_CHECK_FUNC(_isnan, [AC_DEFINE(HAVE_ISNAN) AC_DEFINE(isnan,_isnan)]))
++  [AC_CHECK_FUNC(_isnan, [AC_DEFINE(HAVE_ISNAN) AC_DEFINE(isnan,_isnan)])])
+ 
+ AC_CHECK_FUNC(sigvec, AC_DEFINE(HAVE_SIGVEC),
+-  AC_CHECK_FUNC(sigvector, AC_DEFINE(HAVE_SIGVECTOR)))
++  [AC_CHECK_FUNC(sigvector, AC_DEFINE(HAVE_SIGVECTOR))])
+ 
+ # Solaris has the copysign function in libc but provides no
+ # prototype when compiling with gcc in __GCC__ mode.
