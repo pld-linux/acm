@@ -59,7 +59,8 @@ for dir in dis dis/disgen gedit; do
 	%{__autoconf}
 	cd $olddir
 done
-%configure --prefix=$RPM_BUILD_ROOT%{_prefix}
+%configure \
+	--prefix=$RPM_BUILD_ROOT%{_prefix}
 %{__make}
 
 %install
