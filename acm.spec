@@ -1,6 +1,4 @@
 # ToDo:
-# - make it build,
-# - make it work :>
 # - make it install in a correct directory....
 #
 Summary:	X based flight combat.
@@ -15,12 +13,14 @@ License:	GPL v2
 Group:		X11/Applications/Games
 Source0:	http://www.websimulations.com/download/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_fix.patch
+Patch1:		%{name}-sparc.patch
+Patch2:		%{name}-general.patch
 URL:		http://home.netcom.com/~rrainey/acm.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 ACM is an X based flight simulator. It also have network cabailities
-for multiple player games.
+for multiplayer games.
 
 %description -l de
 ACM ist ein Flugsimulator auf X-Basis, der netzwerkfähig ist und die
@@ -38,6 +38,8 @@ gerekli að yeteneklerine sahiptir.
 %setup -q
 chmod -R +rwX *
 %patch0
+%patch1 -p1
+%patch2 -p1
 
 %build
 rm -f missing
@@ -50,14 +52,14 @@ for dir in dis dis/disgen gedit; do
 	%{__autoconf}
 	cd $olddir
 done
-%configure 
+%configure --prefix=$RPM_BUILD_ROOT%{_prefix}
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_prefix}/{bin,lib/games,man/man1}
 
-%{__make} install prefix=$RPM_BUILD_ROOT
+%{__make} prefix=$RPM_BUILD_ROOT%{_prefix} install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
