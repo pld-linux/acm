@@ -1,0 +1,26 @@
+--- acm-5.0/configure.in.orig	Mon Jul  7 13:52:15 2003
++++ acm-5.0/configure.in	Mon Jul  7 13:57:47 2003
+@@ -31,7 +31,7 @@
+ 
+ AC_PROG_CC
+ 
+-AC_CHECK_LIB(nsl, xdr_free, [LIBS="$LIBS -lnsl"])
++AC_SEARCH_LIBS(xdr_free, nsl)
+ 
+ if test "$LINUX" = "0" ; then
+ 	AC_CHECK_LIB(elf, elf_end, [LIBS="$LIBS -lelf"])
+@@ -143,13 +143,11 @@
+ fi
+ unset ac_cv_lib_audio
+ 
+-AC_CHECK_LIB(socket, bind, [LIBS="$LIBS -lsocket"])
++AC_SEARCH_LIBS(bind, socket)
+ AC_CHECK_LIB(dnet_stub, main, [LIBS="$LIBS -ldnet_stub"])
+ 
+ if uname -srv | grep '^AIX 2 3' >/dev/null ; then
+     :
+-else
+-	AC_CHECK_LIB(bsd, main, [LIBS="$LIBS -lbsd"])
+ fi
+ 
+ LIBS="$LIBS -lm"
