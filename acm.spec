@@ -13,8 +13,7 @@ Release:	0.1
 Copyright:	MIT
 Group:		X11/Applications/Games
 Source0:	http://www.websimulations.com/download/%{name}-%{version}.tar.gz
-#Patch0:		%{name}-4.7-linux.patch
-#Patch1:		%{name}-4.7-glibc.patch
+Patch0:		%{name}-ac_fix.patch
 URL:		http://home.netcom.com/~rrainey/acm.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -37,15 +36,13 @@ gerekli að yeteneklerine sahiptir.
 %prep
 %setup -q
 chmod -R +rwX *
-#%patch -p1 -b .linux
-#%patch1 -p1 -b .noglibc
+%patch0
 
 %build
 rm -f missing
 %{__aclocal}
 %{__autoconf}
 #%{__autoheader}
-#%{__automake}
 %configure
 %{__make}
 
