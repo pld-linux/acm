@@ -1,0 +1,51 @@
+--- acm-5.0/V/lib/Vlib.h.tim	Wed Jul  7 14:53:45 1999
++++ acm-5.0/V/lib/Vlib.h	Wed Jul  7 14:54:08 1999
+@@ -316,9 +316,6 @@
+ 	extern Status AlibAllocColor(Viewport *v, Colormap colormap, XColor *c);
+ 
+ 
+-#ifndef SYSV
+-	extern char *strdup(const char *);
+-#endif
+ 
+ #if (defined(_AIX) && defined(_IBMR2)) && !(defined(__GNUC__) \
+      && (__GNUC__ == 2 ))
+--- acm-5.0/V/lib/InitAWin.c.tim	Wed Jul  7 14:53:52 1999
++++ acm-5.0/V/lib/InitAWin.c	Wed Jul  7 14:54:01 1999
+@@ -6,7 +6,7 @@
+ 
+ #include <X11/Xlib.h>
+ 
+-extern char *malloc(size_t);
++/*extern char *malloc(size_t);*/
+ 
+ #ifdef HAS_FRAME_BUFFER
+ void
+--- acm-5.0/src/init.c.tim	Wed Jul  7 14:53:28 1999
++++ acm-5.0/src/init.c	Wed Jul  7 14:54:18 1999
+@@ -70,14 +70,14 @@
+ 	char      libname[256];
+ 
+ 	if ((f = fopen(name, access)) == (FILE *) NULL) {
+-		strcpy(libname, "../objects/");
++		strcpy(libname, "/usr/lib/games/acm/");
+ 		strcat(libname, name);
+ 		if ((f = fopen(libname, access)) == (FILE *) NULL) {
+ 			strcpy(libname, _acm_fopen_library_dir);
+ 			strcat(libname, name);
+ 			if ((f = fopen(libname, access)) == (FILE *) NULL) {
+ 				strcpy (libname, SRCDIR);
+-				strcat (libname, "/../objects/");
++				strcat (libname, "/usr/lib/games/acm/");
+ 				strcat (libname, name);
+ 				if ((f = fopen(libname, access)) == (FILE *) NULL) {
+ 					fprintf(stderr, errmsg, name, _acm_fopen_library_dir, libname);
+@@ -102,7 +102,7 @@
+ 
+ 	strcpy(pname, name);
+ 	if (stat(name, &statbuf) != 0) {
+-		strcpy(pname, "../objects/");
++		strcpy(pname, "/usr/lib/games/acm/");
+ 		strcat(pname, name);
+ 		if (stat(pname, &statbuf) != 0) {
+ 			strcpy(pname, _acm_fopen_library_dir);

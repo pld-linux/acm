@@ -1,0 +1,15 @@
+--- acm-5.0/src/joystick.c.tim	Fri Jul 16 20:37:03 1999
++++ acm-5.0/src/joystick.c	Fri Jul 16 20:37:10 1999
+@@ -159,10 +159,10 @@
+ 
+ #ifdef TIOCM_RTS
+ 	flags = TIOCM_RTS | TIOCM_DTR | TIOCM_LE;
+-	if (ioctl(fd, TIOCMSET, &flags) == -1) {
++	/*if (ioctl(fd, TIOCMSET, &flags) == -1) {
+ 	    perror("ioctl failed");
+ 	    return -1;
+-	}
++	}*/	
+ #endif
+ 
+ /*
