@@ -1,0 +1,48 @@
+--- acm-5.0/objects/Makefile.in.orig	Mon Aug 17 17:44:38 1998
++++ acm-5.0/objects/Makefile.in	Mon Jul  7 13:43:12 2003
+@@ -1,6 +1,6 @@
+       srcdir = @srcdir@
+ 
+-prefix = /usr/local
++prefix = @prefix@
+ 
+       bindir = $(prefix)/bin
+        VPATH = @srcdir@
+@@ -28,11 +28,11 @@
+ all clean mostlyclean realclean info dvi dist depend:
+ 
+ install:
+-	-mkdir -p $(ACM_OBJECT_LIBRARY)
++	install -d $(DESTDIR)$(ACM_OBJECT_LIBRARY)
+ 	@for i in $(SCENES) $(OBJECTS) $(SOUNDS) ; do \
+ 		echo Installing $$i ... ; \
+-	    rm -rf $(ACM_OBJECT_LIBRARY)$$i ; \
+-		$(INSTALL_DATA) $(srcdir)/$$i $(ACM_OBJECT_LIBRARY)$$i ; \
++	    rm -rf $(DESTDIR)$(ACM_OBJECT_LIBRARY)/$$i ; \
++		$(INSTALL_DATA) $(srcdir)/$$i $(DESTDIR)$(ACM_OBJECT_LIBRARY)/$$i ; \
+ 	done
+ 
+ uninstall:
+--- acm-5.0/src/Makefile.in.orig	Wed Dec  9 22:53:42 1998
++++ acm-5.0/src/Makefile.in	Mon Jul  7 13:44:25 2003
+@@ -3,6 +3,7 @@
+       srcdir = @srcdir@
+       prefix = @prefix@
+       bindir = $(prefix)/bin
++      mandir = @mandir@
+        VPATH = @srcdir@
+        SHELL = /bin/sh
+           CC = @CC@
+@@ -80,9 +81,10 @@
+ 	rm -f TAGS tags
+ 
+ install: $(PROGRAMS)
+-	$(INSTALL_PROGRAM) acm $(bindir)/acm
++	install -d $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man$(manext)
++	$(INSTALL_PROGRAM) acm $(DESTDIR)$(bindir)/acm
+ 	$(INSTALL_DATA) $(srcdir)/acm.man \
+-		$(prefix)/man/man$(manext)/acm.$(manext)
++		$(DESTDIR)$(mandir)/man$(manext)/acm.$(manext)
+ 
+ uninstall:
+ 	rm -f $(bindir)/acm
