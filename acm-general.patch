@@ -12,12 +12,11 @@
       && (__GNUC__ == 2 ))
 --- acm-5.0/V/lib/InitAWin.c.tim	Wed Jul  7 14:53:52 1999
 +++ acm-5.0/V/lib/InitAWin.c	Wed Jul  7 14:54:01 1999
-@@ -6,7 +6,7 @@
+@@ -6,7 +6,6 @@
  
  #include <X11/Xlib.h>
  
 -extern char *malloc(size_t);
-+/*extern char *malloc(size_t);*/
  
  #ifdef HAS_FRAME_BUFFER
  void
@@ -49,3 +48,36 @@
  		strcat(pname, name);
  		if (stat(pname, &statbuf) != 0) {
  			strcpy(pname, _acm_fopen_library_dir);
+--- acm-5.0/dis/sdbm/sdbm.c.orig	Tue May 12 05:59:05 1998
++++ acm-5.0/dis/sdbm/sdbm.c	Mon Jul  7 13:36:17 2003
+@@ -52,13 +52,6 @@
+ /*
+  * externals
+  */
+-#ifndef sun
+-extern int errno;
+-#endif
+-
+-extern char *malloc proto((unsigned int));
+-extern void free proto((void *));
+-extern long lseek();
+ 
+ /*
+  * forward
+--- acm-5.0/dis/sdbm/util.c.orig	Tue Sep 26 19:02:06 1995
++++ acm-5.0/dis/sdbm/util.c	Mon Jul  7 13:38:25 2003
+@@ -1,3 +1,4 @@
++#include <errno.h>
+ #include <stdio.h>
+ #ifdef SDBM
+ #include "sdbm.h"
+@@ -10,8 +11,7 @@
+ register char *s1;
+ register char *s2;
+ {
+-	extern int errno, sys_nerr;
+-	extern char *sys_errlist[];
++	extern int sys_nerr;
+ 	extern char *progname;
+ 
+ 	if (progname)
