@@ -1,6 +1,7 @@
 # ToDo:
 # - make it build,
 # - make it work :>
+# - make it install in a correct directory....
 #
 Summary:	X based flight combat.
 Summary(de):	Flugkampfspiel unter X.
@@ -9,8 +10,8 @@ Summary(tr):	X tabanlý uçuþ ve savaþ.
 Summary(pl):	Symulator lotu dla X Windows.
 Name:		acm
 Version:	5.0
-Release:	0.1
-Copyright:	MIT
+Release:	0.2
+License:	GPL v2
 Group:		X11/Applications/Games
 Source0:	http://www.websimulations.com/download/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_fix.patch
@@ -43,14 +44,20 @@ rm -f missing
 %{__aclocal}
 %{__autoconf}
 #%{__autoheader}
-%configure
+for dir in dis dis/disgen gedit; do
+	olddir=$(pwd)
+	cd $dir
+	%{__autoconf}
+	cd $olddir
+done
+%configure 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_prefix}/{bin,lib/games,man/man1}
 
-%{__make} prefix=$RPM_BUILD_ROOT install
+%{__make} install prefix=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
