@@ -12,6 +12,7 @@ Release:	0.2
 License:	GPL v2
 Group:		X11/Applications/Games
 Source0:	http://www.websimulations.com/download/%{name}-%{version}.tar.gz
+# Source0-md5:	8d27051a3aa0d85b90f66a86f746e827
 Patch0:		%{name}-ac_fix.patch
 Patch1:		%{name}-sparc.patch
 Patch2:		%{name}-general.patch
