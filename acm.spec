@@ -1,6 +1,3 @@
-# ToDo:
-# - make it install in a correct directory....
-#
 Summary:	X based flight combat
 Summary(de):	Flugkampfspiel unter X
 Summary(fr):	Combat aérien sous X
@@ -16,7 +13,10 @@ Source0:	http://www.websimulations.com/download/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_fix.patch
 Patch1:		%{name}-sparc.patch
 Patch2:		%{name}-general.patch
+Patch3:		%{name}-DESTDIR.patch
+Patch4:		%{name}-nolibs.patch
 URL:		http://home.netcom.com/~rrainey/acm.html
+BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -44,31 +44,31 @@ gerekli að yeteneklerine sahiptir.
 %prep
 %setup -q
 chmod -R +rwX *
-%patch0
+%patch0 -p0
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 rm -f missing
 %{__aclocal}
 %{__autoconf}
-#%{__autoheader}
 for dir in dis dis/disgen gedit; do
 	olddir=$(pwd)
 	cd $dir
 	%{__autoconf}
 	cd $olddir
 done
-%configure \
-	--prefix=$RPM_BUILD_ROOT%{_prefix}
+%configure
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/games,%{_mandir}/man1}
 
 %{__make} install \
-	prefix=$RPM_BUILD_ROOT%{_prefix}
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -76,7 +76,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/acm
-%attr(755,root,root) %{_bindir}/acms
-%attr(755,root,root) %{_bindir}/kill-acms
 %{_libdir}/games/acm
 %{_mandir}/man1/acm.1*
