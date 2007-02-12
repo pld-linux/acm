@@ -1,8 +1,8 @@
 Summary:	X based flight combat
-Summary(de.UTF-8):   Flugkampfspiel unter X
-Summary(fr.UTF-8):   Combat aérien sous X
-Summary(pl.UTF-8):   Symulator lotu dla systemu X Window
-Summary(tr.UTF-8):   X tabanlı uçuş ve savaş
+Summary(de.UTF-8):	Flugkampfspiel unter X
+Summary(fr.UTF-8):	Combat aérien sous X
+Summary(pl.UTF-8):	Symulator lotu dla systemu X Window
+Summary(tr.UTF-8):	X tabanlı uçuş ve savaş
 Name:		acm
 Version:	5.0
 Release:	0.2
