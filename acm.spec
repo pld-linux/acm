@@ -1,8 +1,8 @@
 Summary:	X based flight combat
-Summary(de):	Flugkampfspiel unter X
-Summary(fr):	Combat aérien sous X
-Summary(pl):	Symulator lotu dla systemu X Window
-Summary(tr):	X tabanlý uçuþ ve savaþ
+Summary(de.UTF-8):   Flugkampfspiel unter X
+Summary(fr.UTF-8):   Combat aÃ©rien sous X
+Summary(pl.UTF-8):   Symulator lotu dla systemu X Window
+Summary(tr.UTF-8):   X tabanlÄ± uÃ§uÅŸ ve savaÅŸ
 Name:		acm
 Version:	5.0
 Release:	0.2
@@ -25,21 +25,21 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 ACM is an X based flight simulator. It also have network cabailities
 for multiplayer games.
 
-%description -l de
-ACM ist ein Flugsimulator auf X-Basis, der netzwerkfähig ist und die
+%description -l de.UTF-8
+ACM ist ein Flugsimulator auf X-Basis, der netzwerkfÃ¤hig ist und die
 Teilnahme mehrerer Spieler gestattet.
 
-%description -l fr
-ACM est un simulateur de vol sous X. Il permet de jouer en réseau à
+%description -l fr.UTF-8
+ACM est un simulateur de vol sous X. Il permet de jouer en rÃ©seau Ã 
 plusieurs joueurs.
 
-%description -l pl
-ACM to symulator lotu dla systemu X Window. Ma mo¿liwo¶æ gry przez
-sieæ dla wielu graczy.
+%description -l pl.UTF-8
+ACM to symulator lotu dla systemu X Window. Ma moÅ¼liwoÅ›Ä‡ gry przez
+sieÄ‡ dla wielu graczy.
 
-%description -l tr
-ACM, X tabanlý bir uçuþ simulatörüdür. Çok oyunculu oynayabilmek için
-gerekli að yeteneklerine sahiptir.
+%description -l tr.UTF-8
+ACM, X tabanlÄ± bir uÃ§uÅŸ simulatÃ¶rÃ¼dÃ¼r. Ã‡ok oyunculu oynayabilmek iÃ§in
+gerekli aÄŸ yeteneklerine sahiptir.
 
 %prep
 %setup -q
