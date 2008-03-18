@@ -5,7 +5,7 @@ Summary(pl.UTF-8):	Symulator lotu dla systemu X Window
 Summary(tr.UTF-8):	X tabanlı uçuş ve savaş
 Name:		acm
 Version:	5.0
-Release:	0.2
+Release:	0.3
 License:	GPL v2
 Group:		X11/Applications/Games
 Source0:	http://www.websimulations.com/download/%{name}-%{version}.tar.gz
@@ -15,10 +15,12 @@ Patch1:		%{name}-sparc.patch
 Patch2:		%{name}-general.patch
 Patch3:		%{name}-DESTDIR.patch
 Patch4:		%{name}-nolibs.patch
+Patch5:		%{name}-malloc.patch
 URL:		http://home.netcom.com/~rrainey/acm.html
-BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gdbm-devel
+BuildRequires:	xorg-lib-libXext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -49,6 +51,7 @@ chmod -R +rwX *
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 rm -f missing
