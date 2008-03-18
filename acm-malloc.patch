@@ -1,0 +1,11 @@
+--- acm-5.0/src/splash.c.old	2008-03-18 21:49:11.000000000 +0100
++++ acm-5.0/src/splash.c	2008-03-18 21:50:10.000000000 +0100
+@@ -47,7 +47,7 @@ from the X Consortium.
+ extern int errno;
+ #endif
+ 
+-extern char *malloc();
++extern void *malloc();
+ unsigned Image_Size();
+ Atom wm_protocols;
+ Atom wm_delete_window;
