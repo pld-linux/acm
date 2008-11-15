@@ -24,3 +24,16 @@
  fi
  
  LIBS="$LIBS -lm"
+--- acm-5.0/dis/configure.in.orig	1998-05-28 19:31:43.000000000 +0200
++++ acm-5.0/dis/configure.in	2008-11-15 09:07:57.427125998 +0100
+@@ -14,8 +14,8 @@
+ AC_CHECK_HEADERS(stdlib.h unistd.h string.h memory.h fcntl.h)
+ AC_HEADER_TIME
+ 
+-AC_CHECK_LIB(socket, bind, [LIBS="$LIBS -lsocket"]) 
+-AC_CHECK_LIB(nsl, xdr_free, [LIBS="$LIBS -lnsl"])
++AC_SEARCH_LIBS(bind, socket)
++AC_SEARCH_LIBS(xdr_free, nsl)
+ AC_CHECK_LIB(gdbm, dbm_fetch, [LIBS="$LIBS -lgdbm"])
+ 
+ 
