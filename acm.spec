@@ -20,6 +20,7 @@ URL:		http://home.netcom.com/~rrainey/acm.html
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gdbm-devel
+BuildRequires:	nas-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
