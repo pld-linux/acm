@@ -5,7 +5,7 @@
  #endif
  
 -extern char *malloc();
-+extern void *malloc();
++#include <stdlib.h>
  unsigned Image_Size();
  Atom wm_protocols;
  Atom wm_delete_window;
