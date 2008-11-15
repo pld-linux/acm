@@ -54,7 +54,6 @@ chmod -R +rwX *
 %patch5 -p1
 
 %build
-rm -f missing
 %{__aclocal}
 %{__autoconf}
 for dir in dis dis/disgen gedit; do
@@ -65,7 +64,8 @@ for dir in dis dis/disgen gedit; do
 done
 %configure
 
-%{__make}
+# -j1 because of no rules to make dis/disp.h early enough
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -79,5 +79,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/acm
-%{_libdir}/games/acm
+%{_prefix}/lib/games/acm
 %{_mandir}/man1/acm.1*
